@@ -1,16 +1,11 @@
 import React from "react";
 
-function Characters({ Characters, setCharacters }) {
-  //Metodo para resetear los personajes
-  const resetCharacters = () => {
-    setCharacters(null);
-  };
-
+function Characters({ Characters, resetApp }) {
   return (
     <div className="characters">
-      <h1>Characters</h1>
-      <span className="back-home" onClick={resetCharacters}>
-        Refresar al inicio
+      <h1>Personajes</h1>
+      <span className="back-home" onClick={resetApp}>
+        ← Volver al inicio
       </span>
       <div className="container-characters">
         {Characters.map((character, index) => (
@@ -23,29 +18,41 @@ function Characters({ Characters, setCharacters }) {
               <h6>
                 {character.status === "Alive" ? (
                   <>
-                    <span className="alive"></span> Alive
+                    <span className="alive"></span> Vivo
+                  </>
+                ) : character.status === "Dead" ? (
+                  <>
+                    <span className="dead"></span> Muerto
                   </>
                 ) : (
                   <>
-                    <span className="dead"></span> Dead
+                    <span className="unknown"></span> Desconocido
                   </>
                 )}
               </h6>
 
               <p>
-                <span className="text-grey">Episodio: </span>
+                <span className="text-grey">Episodios: </span>
                 <span>{character.episode.length}</span>
               </p>
               <p>
-                <span className="text-gray">Especie: </span>
+                <span className="text-grey">Especie: </span>
                 <span>{character.species}</span>
+              </p>
+              <p>
+                <span className="text-grey">Género: </span>
+                <span>{character.gender}</span>
+              </p>
+              <p>
+                <span className="text-grey">Origen: </span>
+                <span>{character.origin.name}</span>
               </p>
             </div>
           </div>
         ))}
       </div>
-      <span className="back-home" onClick={resetCharacters}>
-        Back Home
+      <span className="back-home" onClick={resetApp}>
+        ← Volver al inicio
       </span>
     </div>
   );
